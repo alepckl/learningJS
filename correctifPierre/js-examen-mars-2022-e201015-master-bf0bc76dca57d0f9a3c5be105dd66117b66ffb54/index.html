@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>CodeNames - JS</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&effect=neon|outline|emboss|shadow-multiple">
+    <script src="https://kit.fontawesome.com/46db800639.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+</head>
+<body>
+<header>
+    <h2>Codenames</h2>
+</header>
+<main id="gameScreen">
+    <h1><button id="backHome">&lt;&lt;&lt;</button> <span id="role">Espion</span>&nbsp;<span id="idGame">SLKNE4390NXSKJB-135793</span> </h1>
+    <section class="board">
+        <div class="word"><div class="red"><span>EXEMPLE</span></div></div>
+        <div class="word"><div class="unknown"><span>ESSAI</span></div></div>
+        <div class="word"><div class="blue"><span>TEST</span></div></div>
+        <div class="word"><div class="unknown"><span>DEMO</span></div></div>
+        <div class="word"><div class="unknown"><span>ECHANTILLON</span></div></div>
+        <div class="word"><div class="unknown"><span>HELLO</span></div></div>
+        <div class="word"><div class="unknown"><span>WORD</span></div></div>
+        <div class="word"><div class="unknown"><span>BONJOUR</span></div></div>
+        <div class="word"><div class="unknown"><span>SALUT</span></div></div>
+        <div class="word"><div class="unknown"><span>HI</span></div></div>
+        <div class="word"><div class="blue"><span>HALLO</span></div></div>
+        <div class="word"><div class="unknown"><span>AZUL</span></div></div>
+        <div class="word"><div class="unknown"><span>NÌ HAO</span></div></div>
+        <div class="word"><div class="unknown"><span>HOLA</span></div></div>
+        <div class="word"><div class="red"><span>YASOU</span></div></div>
+        <div class="word"><div class="red"><span>NAMASKAAR</span></div></div>
+        <div class="word"><div class="unknown"><span>CHÀO</span></div></div>
+        <div class="word"><div class="unknown"><span>OLÀ</span></div></div>
+        <div class="word"><div class="neutral"><span>PRIVYÈT</span></div></div>
+        <div class="word"><div class="unknown"><span>HEJ</span></div></div>
+        <div class="word"><div class="unknown"><span>JAMBO</span></div></div>
+        <div class="word"><div class="unknown"><span>WATDI</span></div></div>
+        <div class="word"><div class="unknown"><span>SELAM</span></div></div>
+        <div class="word"><div class="red"><span>PRYVIT</span></div></div>
+        <div class="word"><div class="unknown"><span>OSSU</span></div></div>
+    </section>
+    <section class="commands">
+        <section class="key red">
+            <div class="cell red"></div>
+            <div class="cell red"></div>
+            <div class="cell blue"></div>
+            <div class="cell red"></div>
+            <div class="cell neutral"></div>
+            <div class="cell blue"></div>
+            <div class="cell blue"></div>
+            <div class="cell red"></div>
+            <div class="cell neutral"></div>
+            <div class="cell neutral"></div>
+            <div class="cell blue"></div>
+            <div class="cell blue"></div>
+            <div class="cell neutral"></div>
+            <div class="cell blue"></div>
+            <div class="cell red"></div>
+            <div class="cell red"></div>
+            <div class="cell neutral"></div>
+            <div class="cell blue"></div>
+            <div class="cell neutral"></div>
+            <div class="cell red"></div>
+            <div class="cell neutral"></div>
+            <div class="cell blue"></div>
+            <div class="cell red"></div>
+            <div class="cell red"></div>
+            <div class="cell killer"></div>
+        </section>
+        <section class="form">
+            <header class="form">
+                <h2>Tour 3</h2>
+                <ul>
+                    <li class="red">4/9</li>
+                    <li class="blue">2/8</li>
+                </ul>
+            </header>
+            <p class="message">Votre indice ?</p>
+            <form id="spy" autocomplete="off">
+                <label
+                >Indice: <input type="text" id="clue" name="clue" value=""
+                /></label>
+                <label
+                >Nombre de mots liés:
+                    <input
+                            type="number"
+                            id="clueNbr"
+                            name="clueNbr"
+                            value="1"
+                            min="1"
+                            max="9"
+                    /></label>
+                <button type="button" id ="confirmBtn">Confirmer</button>
+            </form>
+            <section class="player">
+                <span id="clueWord">NAGEOIRE</span>:<span id="clueWordNbr">2</span>
+            </section>
+            <section id="result">
+            </section>
+
+        </section>
+    </section>
+</main>
+<main id="homeScreen">
+    <h1>Menu</h1>
+    <form class="homeForm" id="homeForm" autocomplete="off">
+        <fieldset>
+            <label class="info" id="loadGameMsg"></label>
+            <ul id="localGameIds">
+                <li>
+                    <button class="open" type="button" id="m9tD6zcuTfqqWWMitRsD-FiKfsl">m9tD6zcuTfqqWWMitRsD-FiKfsl</button>
+                    <button class="delete" type="button" id="del-m9tD6zcuTfqqWWMitRsD-FiKfsl" title="supprimer">X</button>
+                </li>
+                <li>
+                    <button class="open" type="button" id="piSPiSgCC6LruV6PEEuc-B8zXJt">piSPiSgCC6LruV6PEEuc-B8zXJt</button>
+                    <button class="delete" type="button" id="del-piSPiSgCC6LruV6PEEuc-B8zXJt" title="supprimer">X</button>
+                </li>
+                <li>
+                    <button class="open" type="button" id="piSPiSgCC6LruV6PEEuc">piSPiSgCC6LruV6PEEuc</button>
+                    <button class="delete" type="button" id="del-piSPiSgCC6LruV6PEEuc" title="supprimer">X</button>
+                </li>
+                <li>
+                    <button class="open" type="button" id="g4QarODLE9yI6n7JqQLG-yj7X0z">g4QarODLE9yI6n7JqQLG-yj7X0z</button>
+                    <button class="delete" type="button" id="del-g4QarODLE9yI6n7JqQLG-yj7X0z" title="supprimer">X</button>
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <label class="info" id="joinGameMsg"></label>
+            <label>Code partie: <input type="text" id="codeGame" name="codeGame" value="" required></label>
+            <button type="button" id="joinGameBtn">Rejoindre partie</button>
+        </fieldset>
+        <fieldset>
+            <label class="info" id="newGameMsg"></label>
+            <button type="button" id="newGameBtn">Créer une nouvelle partie</button>
+        </fieldset>
+    </form>
+</main>
+</body>
+</html>

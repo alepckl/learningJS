@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+    const CLE="XAZ568";
+    const URL_ANNUAIRE = "https://dartagnan.cg.helmo.be/~p150107/js2/qcm/annuaire.php";
+    verifieNomPrenom({matricule:'p150107',courriel:'p150107@annuaire.be'})
+    function checkValue(value) {
+        if (value[0].nom === "Non trouvé" && value[0].prenom === "Non trouvé") return false;
+        if (value[0].nom === value[1].nom && value[0].prenom === value[1].prenom) return true;
+        return false;
+    }
+
+    function getPromiseByPost(matricule) {
+        let postInfo = JSON.stringify({matricule: matricule, cle: CLE})
+
+        return fetch(URL_ANNUAIRE, {method:"POST", body:postInfo})
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error();
+                }
+                return response;
+            })
+            .then(response => response.json())
+    }
+
+    function getPromiseByGet(courriel) {
+        console.log(courriel + 'Courriel');
+        return fetch(`${URL_ANNUAIRE}?courriel=${courriel}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error();
+                }
+                return response;
+            })
+            .then(response => response.json())
+    }
+
+    function verifieNomPrenom({matricule, courriel} = {}) {
+        return Promise.all([getPromiseByGet(courriel), getPromiseByPost(matricule)])
+            .then(values => {
+                console.log(value[0].nom);
+                return {correct: checkValue(value), parCourriel: {nom: value[0].nom, prenom: value[0].prenom}, parMatricule: {nom: value[1].nom, prenom: value[1].prenom}}
+            })
+    }
+</script>

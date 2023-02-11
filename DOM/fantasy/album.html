@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        let count = 1;
+    </script>
+    <meta charset="UTF-8">
+    <title>Album photo</title>
+    <style>
+        body {
+            display: flex;
+            flex-flow: column nowrap;
+            background-color: grey;
+            width: 100rem;
+            margin: 0 auto;
+            height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            height: 2rem;
+        }
+        .album {
+            background-color: white;
+            display: flex;
+            flex-flow: column nowrap;
+            width: 90rem;
+            flex-grow:1 ;
+            margin: 0 auto;
+        }
+        #vignettes {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            height: 3rem;
+            margin: 0 auto;
+            align-self:center;
+        }
+        .vignette {
+            flex-shrink: 1;
+            height: 3rem;
+            margin: 0 0.5rem;
+            padding: 0;
+        }
+        #ecran {
+            width: 40rem;
+            height: 20rem;
+            margin: 1rem auto;
+        }
+        footer {
+            width: 90rem;
+            height: 2rem;
+            background-color: #333;
+            color: grey;
+            text-align: right;
+            margin: 0 auto;
+        }
+        #add {
+            width: 4rem;
+            align-self: center;
+        }
+    </style>
+    <!-- TODO: Inclusion de vos scripts ici -->
+    <script type="module">
+        // Récupère le button "add" et lui assigne un évènement
+        document.getElementById("add").addEventListener('click', () => {
+
+            // Crée un évènement IMG et lui donne des prioriétés appropriées
+            let element = document.createElement('img');
+            element.src = `./images/fantasy-${count++}.jpg`
+            element.className = `vignette`; // Conseillé d'utiliser "ClassList" qui retourne un objet pour manipuler les classes CSS
+            // Si count < 7, on récupère l'élément vignette et lui ajoute notre img créé
+            if (count < 7) document.getElementById("vignettes").appendChild(element);
+            // On récupère le dernier élément (notre élément ajouté) et lui assigne un évent au click.
+            document.querySelector('#vignettes img:last-child').addEventListener('click', function() {
+                // Récupère l'élément écran et lui assignera la bonne source.
+                document.getElementById("ecran").src = this.src;
+            });
+        })
+    </script>
+</head>
+<body>
+    <h1>Album photos</h1>
+    <section class="album">
+        <img id="ecran" src="" alt="">
+        <button type="button" id="add">+</button>
+        <div id="vignettes">
+            <!-- TODO: votre script placera les vignettes ici comme suit : <img class="vignette" src="" alt=""> -->
+        </div>
+        <ul>
+        </ul>
+    </section>
+    <footer>(Source: PIXABAY, Illustrateur: Stefan Keller)</footer>
+</body>
+</html>

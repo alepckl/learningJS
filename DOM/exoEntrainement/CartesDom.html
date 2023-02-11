@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!-- saved from url=(0130)https://learn-technique.helmo.be/pluginfile.php/254636/question/questiontext/991093/1/25359378/cartes_test.html?time=1643875631231 -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Cartes</title>
+    <style>
+        .cartes {
+            display: flex;
+            flex-flow: row wrap;
+            width: 100%;
+        }
+        .cartes li{
+            padding-inline:.25rem;
+            padding-block:.25rem;
+            list-style:none;
+            background:linear-gradient(to bottom,#fff,#ddd);
+            border-radius:5px;
+            box-shadow:0 0 5px #555;
+            height:160px;
+            width:110px;
+            margin: 1rem;
+            display:grid;
+            grid-template-columns: auto;
+            grid-template-rows: 15% 10% 50% 10% 15%;
+        }
+        .cartes li.selected {
+            border: 1px solid red;
+        }
+        .cartes li strong{
+            font-size:4rem;
+            place-self:center;
+        }
+
+        .cartes li em{
+            font-size:1.5rem
+        }
+        em,b{
+            align-self:center;
+            font-style:normal
+        }
+        b,li span{
+            font-size:1rem
+        }
+        b{
+            margin-inline-start:.5rem
+        }
+        .carreau, .coeur {color:red}
+        .pique, .trefle {color:black}
+        .cartes li span{
+            margin-inline-end:.5rem;
+            place-self:end
+        }
+        .cartes li em:last-child{transform:rotate(180deg)}
+    </style>
+
+</head>
+<body>
+<form>
+    <button type="button" id="remove_btn">Réinitialiser</button>
+    <label>Nombre de cartes: <input type="number" id="nbrCartes" value="1"></label>
+    <button type="button" id="affiche_btn">Afficher</button>
+    <label>Carte survolée: <span id="infoCarte"></span></label>
+</form>
+<script type="module">
+    //cette partie et ces variables ne peuvent pas être modifiées!!
+    //l'utilisation de balises scripts en fin de page n'est pas l'usage recommandé
+    //en tant normal, mais c'est une contrainte due à l'utilisation de CodeRunner dans HELMo Learn
+    let cartes_initial_VM = [];
+    let selectedCard;
+    let id = 1;
+    ['coeur','carreau','pique','trefle'].forEach(couleur => {
+        ['As',2,3,4,5,6,7,8,9,10,'Valet','Dame','Roi'].forEach(valeur => {
+            cartes_initial_VM.push({id: `carte-${id}`, couleur: couleur, valeur: valeur});
+            id += 1;
+        });
+    });
+    const SYMBOLES = {
+        'carreau': '♦',
+        'coeur': '♥',
+        'pique':'♠',
+        'trefle': '♣'
+    };
+    cartes_initial_VM.sort((a, b) => Math.random() - Math.random());
+    let cartes_VM = cartes_initial_VM.map(carte => Object.assign({}, carte));
+
+    /*DEBUT DE VOTRE REPONSE*/
+    let cartesPiochees = [];
+
+    /// --------- Ajouter l'ajout de l'affichage ---------
+
+    // Gestion de l'évènement
+    let button = document.getElementById('affiche_btn');
+    button.addEventListener('click', () => {
+        // Etape 1. - Récupérer le nombre de carte à afficher.
+        let numberToDisplay = document.getElementById("nbrCartes").value;
+
+        // Vérifie que le nombre n'est pas négatif.
+        numberToDisplay = numberToDisplay < 1 ? 1 : numberToDisplay
+        // Vérifie également que le nombre entré n'est pas plus grand que le nombre de carte restante
+        if (numberToDisplay > cartes_VM.length) numberToDisplay = cartes_VM.length;
+
+        // Etape 2. - Ajout des cartes dans les cartes piochées & évènement.
+        for (let currentCard of cartes_VM.splice(0, numberToDisplay)) {
+            // Ajoute les cartes dans les piochées
+            cartesPiochees.push(currentCard)
+
+            // Affichage de la carte
+            const addedElement = displayCard(currentCard);
+
+            // Ajout de l'évènement
+            eventManager(addedElement, currentCard);
+        }
+    })
+
+    /// --------- Réinitialiser la partie ---------
+
+    let removeBtn = document.getElementById('remove_btn');
+    removeBtn.addEventListener('click', () => {
+        // Ajout des cartes.
+        cartes_VM.push(cartesPiochees.splice(0, cartesPiochees.length));
+
+        // Suppression des éléments.
+        let ulHtml = document.querySelector(".cartes");
+        ulHtml.innerHTML = '';
+    })
+
+function eventManager(element, card) {
+        // --------- Survol de carte ---------
+    // Chaine à afficher
+    let displayString = document.getElementById('infoCarte');
+
+    // 1. Mouse in
+    element.addEventListener('mouseover', () => {
+        displayString.innerText = `${card.valeur} de ${(card.couleur).toUpperCase()}`
+    })
+
+    // 2. Mouse out
+    element.addEventListener('mouseout', () => {
+        displayString.innerText = '';
+    })
+
+        // --------- Click de carte ---------
+
+    element.addEventListener('click', function (elem) {
+
+        if (!selectedCard) {
+            // Cas où aucune carte n'est sélectionnée
+
+            element.className = `${this.className} selected`;
+            selectedCard = this;
+
+        } else {
+
+            if (selectedCard == this) {
+
+                // Bouger des cartes piochées.
+                cartesPiochees.filter(value =>
+                    value !== card)
+
+                // Bouger la balise
+                element.remove();
+
+                // Supprime la carte sélectionnée
+                selectedCard = undefined;
+
+            } else {
+                // Cas où une carte est sélectionnée.
+                selectedCard.classList.remove('selected');
+
+                // Ajout de la carte.
+                element.className = `${this.className} selected`;
+                selectedCard = this;
+            }
+
+        }
+
+
+    })
+
+}
+
+
+function displayCard(card) {
+        console.log(card);
+        let ulHtml = document.querySelector(".cartes");
+
+        let element = document.createElement("li");
+        element.id = card.id;
+        element.className = card.couleur;
+        element.innerHTML = `<em>${card.valeur}</em><b>${SYMBOLES[card.couleur]}</b><strong>${SYMBOLES[card.couleur]}</strong><span>${SYMBOLES[card.couleur]}</span><em>${card.valeur}</em>`
+        ulHtml.appendChild(element);
+
+        return element;
+}
+
+
+
+
+
+    /*FIN DE VOTRE REPONSE*/
+</script>
+<ul class="cartes">
+</ul>
+</body></html>

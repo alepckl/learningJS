@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>HELMuse</title>
+    <link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+    <link rel="icon" href="../assets/music.ico" />
+    <script defer src="../libs/helmuse.mjs"></script>
+    <script defer src="../libs/Song.mjs"></script>
+</head>
+<header class="entete">
+    <h2>HELMuse</h2>
+    <section class="meilleurs-albums">
+        <h2>Les 5 meilleurs albums</h2>
+        <div id="meilleurs-albums">
+            <img id="album1" src="../assets/loading.gif" alt="Adele - 21" class="album actif">
+            <img id="album2" src="../assets/loading.gif" alt="Pink Floyd - Whish You Were Here" class="album">
+            <img id="album3" src="../assets/loading.gif" alt="Queen - Innuendo" class="album">
+            <img id="album4" src="../assets/loading.gif" alt="U2 - The Best Of 1980-1990" class="album">
+            <img id="album5" src="../assets/loading.gif" alt="Massive Attack - Blue Lines" class="album">
+        </div>
+        <footer>Adele - 21</footer>
+    </section>
+    <nav class="onglets">
+        <ul>
+            <li id="onglet-radio" class="onglet actif">Radio</li>
+            <li id="onglet-liste" class="onglet">Liste</li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section class="ecran actif" id="ecran-radio">
+        <header>
+            <h1>La radio HELMuse</h1>
+        </header>
+        <article class="piste">
+            <img id="89" class="album" src="../assets/loading.gif" alt="Dodo - Time to sleep">
+            <div>
+                <h2>It's my night</h2>
+                <span class="artiste">Dodo</span>
+                <div>
+                    <span class="annee">2020</span><span class="titre-album">Time to sleep</span>
+                </div>
+                <footer>
+                    <span class="duree">3:06</span><span class="score">15</span>
+                </footer>
+            </div>
+
+        </article>
+        <figure>
+            <blockquote><p id="citation">Entre les murs de l'Université de l'Invisible où on plaçait en gros la femme dans la même catégorie que le papier peint ou les instruments de musiques : intéressante par certains cotés, assurément un élément petit mais important des fondements de la civilisation, mais, à bien y réfléchir, pas essentielle.</p></blockquote>
+            <figcaption id="auteur">Terry Pratchett</figcaption>
+        </figure>
+    </section>
+    <section  class="ecran" id="ecran-liste">
+        <header>
+            <h1>Liste de lecture</h1>
+            <form class="ligne">
+                <button type="button" class="bouton reinitialiser">Réinitialiser vos favoris</button>
+                <div class="ligne">
+                    <button type="button" class="bouton left renouveler">Renouveler</button>
+                    <input type="number" id="nbrMaxPistes" name="nbrMaxPistes" value="25">
+                </div>
+                <button type="button" class="bouton left aleatoire">Lecture aléatoire</button>
+            </form>
+        </header>
+        <table id="pistes">
+            <thead>
+            <tr>
+                <th></th><th>Nom</th><th>Artiste</th><th><i class="far fa-clock"></i><span class="dureeTot">7:27</span></th><th><i class="far fa-heart"></i><span class="scoreTot">37</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><span class="play"></span></td>
+                <td>
+                    <img id="42" class="album" src="../assets/loading.gif" alt="Bruno Mars - Loulou">
+                    <div class="piste">
+                        <span class="titre-piste">Finesse</span>
+                        <span class="titre-album">Loulou</span>
+                    </div>
+                </td>
+                <td>Bruno Mars</td>
+                <td class="duree">3:06</td>
+                <td><span class="score favori">15</span></td>
+            </tr>
+            <tr>
+                <td><span class="play actif"></span></td>
+                <td>
+                    <img id="69" class="album" src="../assets/loading.gif" alt="G-Eazy - Lcdlkn">
+                    <div class="piste">
+                        <span class="titre-piste">Him & I</span>
+                        <span class="titre-album">Lcdlkn</span>
+                    </div>
+                </td>
+                <td>G-Eazy</td>
+                <td class="duree">4:21</td>
+                <td><span class="score">22</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>

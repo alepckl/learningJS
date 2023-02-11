@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script type="module">
+        let cartesPiochees = [];
+        let chosenCard;
+        let allElements = document.querySelector("ul");
+        let span = document.querySelector("#infoCarte");
+        document.querySelector('#affiche_btn').addEventListener('click', () => {
+            let nbCartes = document.querySelector('#nbrCartes').value < 1 ? 1 : document.querySelector('#nbrCartes').value;
+
+            if (cartes_VM.length === 0) return
+
+            if (nbCartes === 0) return;
+            if (nbCartes > cartes_VM.length) nbCartes = cartes_VM.length;
+
+            for (let currentCard of cartes_VM.splice(0, nbCartes)) {
+                cartesPiochees.push(currentCard);
+                createElementAndEvents(currentCard, allElements);
+            }
+
+            function createElementAndEvents(currentCard) {
+                let div = document.createElement('div');
+
+                div.innerHTML = `<li id="${currentCard.id}" class="${currentCard.couleur}"><em>${currentCard.valeur}</em><b>${SYMBOLES[currentCard.couleur]}</b><strong>${SYMBOLES[currentCard.couleur]}</strong><span>${SYMBOLES[currentCard.couleur]}</span><em>${currentCard.valeur}</em></li>`;
+
+                let elem = div.firstChild;
+                createEvents(elem, currentCard);
+                allElements.appendChild(elem);
+            }
+
+            function createEvents(elem, currentCard) {
+                elem.addEventListener('mouseover', () => {
+                    span.innerHTML = `${currentCard.valeur} de ${currentCard.couleur.toUpperCase()}`
+                });
+
+                elem.addEventListener('mouseout', () => {
+                    span.innerHTML = '';
+                });
+
+                elem.addEventListener('click', () => {
+
+                    if (chosenCard === elem) {
+                        span.innerHTML = ""
+                        allElements.removeChild(elem)
+                        cartesPiochees = cartesPiochees.filter(function (value) {
+                            return value !== currentCard;
+                        });
+                        chosenCard = undefined
+                        return;
+                    }
+                    if (chosenCard !== undefined) chosenCard.classList.remove("selected");
+                    elem.classList.add("selected");
+                    chosenCard = elem;
+                })
+            }
+        })
+    </script>
+    <meta charset="UTF-8">
+    <form>
+        <label>Nombre de cartes: <input id="nbrCartes" type="number" value="1"></label>
+        <button id="affiche_btn" type="button">Afficher</button>
+        <label>Carte survolée: <span id="infoCarte"></span></label>
+    </form>
+    <ul className="cartes">
+        <li className="carreau">
+            <em>A</em><b>♦</b><strong>♦</strong><span>♦</span><em>A</em>
+        </li>
+        <li className="trefle">
+            <em>A</em><b>♣</b><strong>♣</strong><span>♣</span><em>A</em>
+        </li>
+        <li className="coeur">
+            <em>A</em><b>♥</b><strong>♥</strong><span>♥</span><em>A</em>
+        </li>
+        <li className="pique">
+            <em>A</em><b>♠</b><strong>♠</strong><span>♠</span><em>A</em>
+        </li>
+    </ul>
+</head>
+</html>
+</ul>

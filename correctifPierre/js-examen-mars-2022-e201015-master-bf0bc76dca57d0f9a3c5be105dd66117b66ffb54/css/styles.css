@@ -1,0 +1,355 @@
+html {
+    background-image: url('../assets/background-codenames.jpg');
+    background-size: auto 100%;
+    background-position: center;
+    font-family: "Roboto";
+}
+header {
+    text-align: center;
+    color: #fff;
+    background-color: #333;
+    margin: 0 0 1em 0;
+}
+header h2 {
+    font-size: 2.5em;
+    margin: 0;
+    padding: 0.2em 0;
+    text-shadow: 0.1rem 0.2rem 0.1rem #ababab;
+}
+h1 {
+    display: block;
+    text-align: center;
+    background-color: #888;
+    margin: 0 auto;
+    width: 55.5rem;
+    padding: 0 0.75rem;
+}
+.board {
+    display: flex;
+    flex-flow: row wrap;
+    width: 55.5rem;
+    height: 36rem;
+    background-color: #eee;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0.75rem;
+}
+.word {
+    width: 10rem;
+    height: 6.25rem;
+    background-color: #efc998;
+    border-radius: 1em;
+}
+.word:hover {
+    background-color: #f0d8b9;
+}
+.word div::after {
+    font-family: "Arial";
+    font-weight: 900;
+    font-size: 2em;
+    content: "?";
+    text-align: center;
+    padding-bottom: 1em;
+    color: #bc9665;
+    margin: 0;
+    padding: 0;
+}
+.word div {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    justify-content: flex-start;
+    height: 4.86em;
+    border: 0.2em solid #bc9665;
+    border-radius: 0.5em;
+    margin: 0.5em;
+}
+.word span {
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    background-color: #fff;
+    border-radius: 0 0 0.2em 0.2em;
+}
+div.red {
+    background-color: #f00;
+}
+.word div.red::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 2em;
+    content: "\f21b";
+    text-align: center;
+    padding-bottom: 1em;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+div.blue {
+    background-color: #00f;
+}
+.word div.blue::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 2em;
+    content: "\f4fb";
+    text-align: center;
+    padding-bottom: 1em;
+    color: #999;
+    margin: 0;
+    padding: 0;
+}
+.killer {
+    background-color: #333;
+}
+.word div.killer::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 2em;
+    content: "\f714";
+    text-align: center;
+    padding-bottom: 1em;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+.neutral {
+    background-color: #584731;
+}
+.word div.neutral::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 2em;
+    content: "\f508";
+    text-align: center;
+    padding-bottom: 1em;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+.commands {
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: #584731;
+    width: 56.25rem;
+    margin: 0 auto;
+    padding: 0 0 0 0.75rem;
+    color: #fff;
+}
+.key {
+    display: flex;
+    flex-flow: row wrap;
+    background-color: #000;
+    justify-content: space-evenly;
+    width: 11.2em;
+    height: 11.2em;
+    padding: 0.3em;
+    margin: 0.5em;
+}
+.key.blue {
+    box-shadow: 1px 1px 5px 4px rgba(0, 0, 255, 0.73);
+}
+.key.red {
+    border: 0.2em dashed #f00;
+}
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    height: 2em;
+    border-radius: 0.4em;
+}
+.cell.red {
+    background-color: #f00;
+}
+.cell.red::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1em;
+    content: "\f21b";
+    color: #000;
+}
+.cell.blue {
+    background-color: #00f;
+}
+.cell.blue::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1em;
+    content: "\f4fb";
+    color: #999;
+}
+.cell.killer {
+    background-color: #333;
+}
+.cell.killer::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1em;
+    content: "\f714";
+    color: #fff;
+}
+.cell.neutral {
+    background-color: #efc998;
+}
+.cell.neutral::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1em;
+    content: "\f508";
+    color: #333;
+}
+header.form {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 0 0 0 1em;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    margin: 0;
+}
+header.form h2 {
+    margin: 0;
+    padding: 0.2rem 0;
+    font-size: 1.8rem;
+}
+header.form ul {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0;
+    padding: 0;
+}
+header.form li {
+    list-style-type: none;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 0 0.5rem;
+    margin: 0;
+    color: #fff;
+}
+header.form li::before {
+    content: "[";
+    color: #fff;
+}
+header.form li::after {
+    content: "]";
+    color: #fff;
+}
+li.red {
+    background-color: #f00;
+}
+li.blue {
+    background-color: #00f;
+}
+section.form {
+    width: calc(100% - 13.55rem);
+    margin: 0 0 0 0.75rem;
+}
+label {
+    display: block;
+    margin: 0.3rem 1rem;
+}
+#confirmBtn {
+    margin: 0.3rem 10rem;
+}
+p.message {
+    text-align: center;
+    font-size: 1.2rem;
+    background-color: #776143;
+    margin: 0 0 1rem 0;
+    padding: 0.3rem 0;
+}
+section.player {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #fff;
+}
+#homeScreen {
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: center;
+    align-items:center;
+    width: 57rem;
+    margin: 0 auto;
+    height: calc(100vh - 5rem);
+    background-color: #eee;
+}
+.homeForm {
+
+}
+#gamesForm {
+    flex-grow: 1;
+    min-height: 20rem;
+}
+#gamesForm ul {
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: center;
+    margin: 0 auto;
+    width: 20rem;
+
+}
+#gamesForm ul li, #localGameIds li {
+    list-style-type: none;
+}
+
+button {
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    margin: 0.5rem 0;
+}
+button.delete {
+    background-color: #a00;
+}
+button.open {
+    width: 15rem;
+}
+
+button:hover {
+    background-color: #444;
+}
+button.delete:hover {
+    background-color: #f00;
+}
+#makeForm {
+
+}
+
+#homeForm fieldset {
+    color: #fff;
+    background-color: #776143;
+    text-align: center;
+    padding: 1rem 0;
+    max-width: 22rem;
+    margin: 1rem auto;
+}
+#result {
+    display: block;
+    height: 7rem;
+    width: 100%;
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#result.winner {
+    background-image: url('../assets/winner.gif');
+}
+
+#result.loser {
+    background-image: url('../assets/loser.gif');
+}
+#backform {
+    font-weight: 900;
+    font-size: 1em;
+    color: #333;
+}
